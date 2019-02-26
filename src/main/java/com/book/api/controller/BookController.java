@@ -48,4 +48,10 @@ public class BookController {
     public ResponseEntity<?> editBook(@RequestBody Book book){
         return new ResponseEntity<>(bookRepository.save(book),HttpStatus.OK);
     }
+
+    @CrossOrigin
+    @RequestMapping(path = "/find/{value}", method = RequestMethod.GET)
+    public ResponseEntity<?> findBook(@PathVariable("value") String value){
+        return new ResponseEntity<>(bookRepository.findBooks(value), HttpStatus.OK);
+    }
 }
