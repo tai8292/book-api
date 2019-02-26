@@ -9,14 +9,14 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private String namme,actor;
+    private String name,actor;
     private double price;
 
     public Book() {
     }
 
-    public Book(String namme, String actor, double price) {
-        this.namme = namme;
+    public Book(String name, String actor, double price) {
+        this.name = name;
         this.actor = actor;
         this.price = price;
     }
@@ -29,12 +29,12 @@ public class Book {
         this.id = id;
     }
 
-    public String getNamme() {
-        return namme;
+    public String getName() {
+        return name;
     }
 
-    public void setNamme(String namme) {
-        this.namme = namme;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getActor() {

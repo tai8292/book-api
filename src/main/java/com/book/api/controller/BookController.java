@@ -15,22 +15,37 @@ public class BookController {
     @Autowired
     BookRepository bookRepository;
 
+    @CrossOrigin
     @RequestMapping(path = "/all", method = RequestMethod.GET)
     public ResponseEntity<?> getListBook()
     {
         return new ResponseEntity<>(bookRepository.findAll(), HttpStatus.OK);
     }
 
+    @CrossOrigin
     @RequestMapping(path = "/add", method = RequestMethod.POST)
     public ResponseEntity<?> createBook(@RequestBody Book book)
     {
         bookRepository.save(book);
-        return new ResponseEntity<>(book, HttpStatus.CREATED);
+        return new ResponseEntity<>(book, HttpStatus.CREATED    );
     }
 
-    @RequestMapping(path = "/delete", method = RequestMethod.DELETE)
-    public ResponseEntity<?> deleteBook(@RequestParam Long id){
+    @CrossOrigin
+    @RequestMapping(path = "/delete/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteBook(@PathVariable("id") Long id){
         bookRepository.deleteById(id);
         return new ResponseEntity<>("Delete", HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @RequestMapping(path = "/{id}", method = RequestMethod.GET  )
+    public ResponseEntity<?> findBook(@PathVariable("id") Long id){
+        return new ResponseEntity<>(bookRepository.findById(id),HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @RequestMapping(path = "/edit", method = RequestMethod.PUT  )
+    public ResponseEntity<?> editBook(@RequestBody Book book){
+        return new ResponseEntity<>(bookRepository.save(book),HttpStatus.OK);
     }
 }
